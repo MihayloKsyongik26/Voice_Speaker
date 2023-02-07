@@ -5,15 +5,12 @@ import numpy as np
 from sklearn import preprocessing
 from scipy.io.wavfile import read
 import python_speech_features as mfcc
-import time
 
 warnings.filterwarnings("ignore")
 
 
 def calculate_delta(array):
     rows, cols = array.shape
-    print(rows)
-    print(cols)
     deltas = np.zeros((rows, 20))
     N = 2
     for i in range(rows):
@@ -37,7 +34,6 @@ def calculate_delta(array):
 def extract_features(audio, rate):
     mfcc_feature = mfcc.mfcc(audio, rate, 0.025, 0.01, 20, nfft=1200, appendEnergy=True)
     mfcc_feature = preprocessing.scale(mfcc_feature)
-    print(mfcc_feature)
     delta = calculate_delta(mfcc_feature)
     combined = np.hstack((mfcc_feature, delta))
     return combined
@@ -61,10 +57,8 @@ def test_model():
     for path in file_paths:
 
         path = path.strip()
-        print(path)
         sr,audio = read(source + path)
         vector   = extract_features(audio,sr)
-
         log_likelihood = np.zeros(len(models))
 
         for i in range(len(models)):
@@ -72,13 +66,10 @@ def test_model():
             scores = np.array(gmm.score(vector))
             log_likelihood[i] = scores.sum()
 
-        print(log_likelihood)
         winner = np.argmax(log_likelihood)
         result = []
-        print(log_likelihood[winner])
-        if log_likelihood[winner] > -25:
+        if log_likelihood[winner] > -20:
             name = get_name(speakers[winner])
-            #print(name)
             result.append(True)
             result.append(name)
             return result

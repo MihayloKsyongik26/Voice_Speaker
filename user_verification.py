@@ -38,6 +38,6 @@ def transform():
         try:
             audio = r.record(source)
             text = r.recognize_google(audio)
-            return text
+            return text.lower()
         except sr.UnknownValueError:
-            pass
+            return "Error"

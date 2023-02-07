@@ -1,6 +1,9 @@
 import pyaudio
 import wave
 import const
+import warnings
+
+warnings.filterwarnings("ignore")
 
 
 def recording():
@@ -9,7 +12,7 @@ def recording():
                     channels=const.CHANNELS,
                     rate=const.RATE,
                     input=True,
-                    input_device_index=1,
+                    #input_device_index=3,
                     frames_per_buffer=const.CHUNK)
     print("* recording")
 

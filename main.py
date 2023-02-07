@@ -4,7 +4,7 @@ from SpeakerIdentification import test_model
 from user_verification import transform
 from command_list import *
 import warnings
-
+import time
 
 warnings.filterwarnings("ignore")
 
@@ -22,7 +22,7 @@ def main():
         print(command_text)
 
         if "rob" in command_text:
-            say("I am listening you")
+            say("I listening you")
             while True:
                 pool = ThreadPool(processes=2)
                 recording()

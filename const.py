@@ -1,6 +1,6 @@
 import pyaudio
 
-WAVE_OUTPUT_FILENAME = "voice.wav"
+WAVE_OUTPUT_FILENAME = "testing_set/sample.wav"
 CHUNK = 48000
 FORMAT = pyaudio.paInt16
 CHANNELS = 1

@@ -6,6 +6,7 @@ import time
 from command_list import say
 
 
+""""
 def verification():
     dir_path = 'User_Voices'
     files = []
@@ -23,10 +24,11 @@ def verification():
         status = bool(prediction)
         #print(score)
         if status == True:
-            say("hello" + str(file))
+            #say("hello" + str(file))
             return status
             break
     return False
+"""
 
 
 def transform():
@@ -38,4 +40,4 @@ def transform():
             text = r.recognize_google(audio)
             return text
         except sr.UnknownValueError:
-            say("I don't understand you")
+            pass

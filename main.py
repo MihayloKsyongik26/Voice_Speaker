@@ -18,17 +18,21 @@ def main():
         command_text = thread2.get()
         print(user_status)
         print(command_text)
-        if user_status[0] == True:
-            if "hello" in command_text or "hi" in command_text:
-                say("Hello" + user_status[1])
-            elif "time" in command_text:
-                get_time()
-            elif "weather" in command_text:
-                get_weather()
-        else:
-            say(user_status[1])
-        t2 = time.time()
-        print(t2-t1)
+        if "rob" or "Rob" in command_text:
+            try:
+                if user_status[0] == True:
+                    if "hello" in command_text or "hi" in command_text:
+                        say("Hello" + user_status[1])
+                    elif "time" in command_text:
+                        get_time()
+                    elif "weather" in command_text:
+                        get_weather()
+                else:
+                    say(user_status[1])
+                t2 = time.time()
+                print(t2-t1)
+            except UnicodeError:
+                print("не пон")
 
 
 if __name__ == '__main__':
